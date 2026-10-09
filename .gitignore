@@ -1,0 +1,41 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+venv_*/
+.cache/
+wandb/
+
+# Runtime outputs and external assets.
+logs/
+outputs/
+runs/
+data/
+weights/
+videos/
+!project-page/assets/videos/
+
+checkpoints/
+wan_models/
+prompts/vidprom_filtered_extended.txt
+
+# Interrupted writes and local credentials.
+*.partial
+*.partial.*
+.env
+.env.*
+!.env.example
+
+# Build artifacts.
+build/
+dist/
+.coverage
+htmlcov/
+
+third_party/
+evaluation_models/
+.venv*/

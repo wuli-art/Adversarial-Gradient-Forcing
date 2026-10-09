@@ -1,0 +1,2 @@
+# Pure AGF for 400 iterations, with the same settings as train.yaml.
+regularization_enabled: false

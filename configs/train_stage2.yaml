@@ -1,0 +1,5 @@
+# Pure AGF, global iterations 201–400. Supply --resume and --resume-step 200.
+max_steps: 400
+checkpoint_steps: [300, 400]
+save_training_state_steps: [300, 400]
+regularization_enabled: false

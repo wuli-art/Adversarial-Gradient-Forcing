@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand adversarial history perturbations.">
+  <meta name="theme-color" content="#ffffff">
+  <title>AGF · Adversarial Gradient Forcing</title>
+  <link rel="preload" href="assets/fonts/inter-variable.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="preload" href="assets/fonts/newsreader-500.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="styles.css?v=5ec20c62">
+  <script src="data.js?v=dba15efb" defer></script>
+  <script src="site.js?v=8de3a965" defer></script>
+</head>
+<body>
+  <a class="skip" href="#gallery">Skip to videos</a>
+  <header class="topbar">
+    <nav class="shell nav" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="AGF home">AGF</a>
+      <div><a href="#gallery">Videos</a><a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#citation">Citation</a></div>
+    </nav>
+  </header>
+  <main>
+    <section id="top" class="hero" aria-labelledby="paper-title">
+      <div class="shell">
+      <div class="institutions" aria-label="Institutions and research teams">
+        <img class="seal" src="assets/logos/zju.png" alt="Zhejiang University">
+        <img class="seal" src="assets/logos/nju.png" alt="Nanjing University">
+        <span class="logo-divider" aria-hidden="true"></span>
+        <img class="wuli" src="assets/logos/wuli.png" alt="Wuli">
+        <img class="rtp" src="assets/logos/rtp-llm.png" alt="RTP-LLM">
+        <img class="alibaba" src="assets/logos/alibaba.png" alt="Alibaba">
+      </div>
+      <div class="hero-title">
+        <h1 id="paper-title">Adversarial <span>Gradient Forcing</span></h1>
+        <p class="paper-subtitle">for Robust Few-Step Autoregressive Video Generation</p>
+      </div>
+      <div class="author-block"><p class="authors"><span>Chenxi Xia<sup>1,2,♯</sup></span><span>Yixuan Xu<sup>2</sup></span><span>Shan Liu<sup>2</sup></span><span>Jiapeng Wang<sup>2</sup></span><span>Maohua Li<sup>2,3</sup></span><br class="author-break"><span>Hanlin Tang<sup>2</sup></span><span>Kan Liu<sup>2</sup></span><span>Tao Lan<sup>2</sup></span><span>Weiyi Lu<sup>2,†</sup></span><span>Xinggao Liu<sup>1,§</sup></span></p>
+      <p class="affiliations"><span><sup>1</sup> Zhejiang University</span><span><sup>2</sup> Alibaba Group</span><span><sup>3</sup> Nanjing University</span></p>
+      <p class="author-notes"><span>♯ Work done during internship at Alibaba</span><span>† Project lead</span><span>§ Corresponding author</span></p></div>
+      <div class="resources" aria-label="Research resources">
+        <a data-resource="arxiv" aria-disabled="true"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 12h6M9 16h6"/></svg> arXiv</a>
+        <a data-resource="huggingface" aria-disabled="true"><span class="resource-icon" aria-hidden="true">🤗</span> Hugging Face</a>
+        <a data-resource="code" href="https://github.com/wuli-art/Adversarial-Gradient-Forcing"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg> Code</a>
+      </div>
+      <div class="tldr"><span class="tldr-label">TL;DR</span><p>AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <strong>adversarial history perturbations</strong>. Trained on only <strong class="keep-phrase">five-second rollouts</strong>, AGF sustains high-quality video generation for <strong>four minutes</strong>.</p></div>
+      <figure class="teaser">
+        <div class="figure-heading"><span>Four-minute generation</span><a href="assets/yawning-child-comparison.png?v=e60e743e" target="_blank">View full resolution <span aria-hidden="true">↗</span></a></div>
+        <a href="assets/yawning-child-comparison.png?v=e60e743e" target="_blank" aria-label="Open the full-resolution yawning-child comparison">
+          <img src="assets/yawning-child-comparison.webp?v=7c7d4487" width="2544" height="1456" alt="Six methods generate a yawning child over four minutes. A left-to-right timeline marks 0s, 48s, 96s, 144s, 192s and 240s. AGF is the top row.">
+        </a>
+        <figcaption><p>Four-minute continuations of the same prompt. <strong>AGF preserves the child’s appearance and the surrounding scene</strong> throughout generation.</p><a href="#gallery">Explore the videos <span aria-hidden="true">↗</span></a></figcaption>
+      </figure>
+      <p class="checkpoint-note"><strong>* SGF:</strong> reproduced from the same ODE initialization as AGF, using its official training settings. <strong>† OPSD-V:</strong> the official checkpoint post-trained from Self-Forcing.</p>
+      </div>
+    </section>
+
+    <section id="gallery" class="gallery-section" aria-labelledby="gallery-title">
+      <div class="shell section">
+        <div class="section-heading gallery-heading">
+          <h2 id="gallery-title">Long-video comparisons</h2><div class="section-intro">
+          <p>Twenty prompts, six methods, four minutes of generation. Explore how appearance, motion and scene structure evolve over time.</p>
+        </div></div>
+        <div class="gallery-settings">
+          <div id="category-filters" role="group" aria-label="Scene category"></div>
+          <div class="view-settings">
+            <label>Comparison <select id="comparison-mode"><option value="four">Four methods</option><option value="six">All six methods</option><option value="pair">Two methods</option></select></label>
+            <label id="pair-label" hidden>Compare AGF with <select id="pair-method"><option value="sgf">SGF</option><option value="opsdv">OPSD-V</option><option value="longlive">LongLive</option><option value="self-forcing">Self-Forcing</option><option value="causal-forcing">Causal Forcing</option></select></label>
+          </div>
+        </div>
+        <div class="gallery-pagination"><p><span id="gallery-count" aria-live="polite"></span><span class="playback-hint">1× · original speed</span></p><nav aria-label="Video gallery pages"><button id="page-prev-top" type="button" aria-label="Previous page">←</button><span id="page-number-top"></span><button id="page-next-top" type="button" aria-label="Next page">→</button></nav></div>
+        <div id="comparison-grid" class="comparison-grid"></div>
+        <div class="gallery-pagination bottom"><a href="#gallery">Back to comparisons ↑</a><nav aria-label="Video gallery pages, bottom"><button id="page-prev" type="button" aria-label="Previous page">←</button><span id="page-number"></span><button id="page-next" type="button" aria-label="Next page">→</button></nav></div>
+        <details class="protocol"><summary>About the videos</summary><p>Each video contains the full generation, presented at 624 × 360 and 16 fps. Playback defaults to 1× (original speed); faster rates are available in each case’s controls. Controls apply to one comparison at a time.</p></details>
+        <noscript><p>Enable JavaScript to compare methods. <a href="assets/videos/049/agf.mp4">Watch AGF’s four-minute yawning-child video</a>.</p></noscript>
+      </div>
+    </section>
+
+    <section id="abstract" class="section shell abstract-section" aria-labelledby="abstract-title">
+      <div class="abstract-label"><h2 id="abstract-title">Abstract</h2></div>
+      <div class="abstract-copy">
+      <p>Autoregressive video generation models generate videos sequentially, with each new block conditioned on previously generated blocks. By training on the model&#x27;s own rollouts, Self Forcing and its follow-up methods substantially mitigate exposure bias caused by the mismatch between training- and inference-time history distributions. However, these models still suffer from error accumulation during long-horizon generation. We identify a key underlying limitation: the model remains highly sensitive to errors in its generated history, allowing small deviations to be amplified through subsequent generations. We refer to this underexplored problem as the local history robustness gap.</p>
+      <p>To address this gap, we introduce Adversarial Gradient Forcing (AGF), a framework designed to improve the robustness of few-step autoregressive video models to perturbations and accumulated errors in their own generated histories. AGF uses distribution matching gradients from future block predictions to select adversarial perturbations of self-generated histories. It then jointly trains the generator on the original and perturbed histories to improve the robustness of future generation. Extensive experiments show that AGF achieves the highest VBench Total score on 60-second video generation and the best visual quality on four-minute video generation. Notably, AGF achieves such long-horizon robustness while requiring only 5-second rollouts for training.</p>
+      </div>
+    </section>
+
+    <section id="motivation" class="section shell ruled" aria-labelledby="motivation-title">
+      <div class="section-heading"><h2 id="motivation-title">The local history robustness gap</h2><div class="section-intro">
+        <p>Every generated block becomes context for the next one. Training on self-generated rollouts narrows the mismatch between training and inference, but it does not necessarily teach a model to recover after its history has become imperfect. Small deviations can still be amplified through later predictions: this is the <strong>local history robustness gap</strong>.</p>
+        <p>The controlled example below keeps the model and future sampling randomness fixed. A one-time perturbation to one history block causes artifacts to emerge earlier and grow more severe. AGF targets this sensitivity directly by training on histories selected for their effect on future generation.</p>
+      </div></div>
+      <figure class="paper-figure"><img src="assets/history-gap.png" width="1800" height="688" loading="lazy" alt="A controlled comparison of Self-Forcing with an unperturbed history and with a single history perturbation."><figcaption><strong>A single history perturbation can alter the entire continuation.</strong> The lower rollout differs only by the intervention to its generated history.</figcaption></figure>
+    </section>
+
+    <section id="method" class="method-section" aria-labelledby="method-title">
+      <div class="section shell">
+      <div class="section-heading"><h2 id="method-title">Adversarial Gradient Forcing</h2><div class="section-intro">
+        <p>AGF learns to continue from imperfect context by constructing small history perturbations that are especially harmful to future predictions. Distribution matching gradients provide the signal for selecting these perturbations. The model then learns from the clean history and its adversarial counterpart together.</p>
+      </div></div>
+      <figure class="paper-figure"><img src="assets/method.png" width="2200" height="1073" loading="lazy" alt="The AGF pipeline: sample on-policy trajectories, select adversarial histories using future DMD gradients, and jointly train on clean and perturbed histories."></figure>
+      <ol class="method-steps">
+        <li><h3><span class="step-number" aria-hidden="true">01</span>On-policy rollout</h3><p>The generator produces a five-second rollout using its own predictions as history. The trajectory is recorded without retaining the full computation graph, and one history block is selected for perturbation.</p></li>
+        <li><h3><span class="step-number" aria-hidden="true">02</span>Adversarial history selection</h3><p>DMD gradients from blocks after the selected history block identify a direction that worsens the subsequent generation. AGF takes a bounded, RMS-normalized step in this direction, producing a challenging history for the model to learn from.</p></li>
+        <li><h3><span class="step-number" aria-hidden="true">03</span>Joint distillation</h3><p>With the perturbation fixed, the generator is trained jointly on the clean and adversarial histories. During early training, a prediction consistency regularizer aligns the first-step velocity predictions under the two histories, helping preserve global scene structure. The regularizer is then removed for the remaining training. At inference, AGF retains the original four-step sampler and adds no perturbation-selection procedure.</p></li>
+      </ol>
+      </div>
+    </section>
+
+    <section id="results" class="section shell" aria-labelledby="results-title">
+      <div class="section-heading"><h2 id="results-title">Long-horizon performance</h2><div class="section-intro"><p>We evaluate six methods at 5 seconds, 60 seconds and 240 seconds using 944, 240 and 120 prompts, respectively. AGF remains competitive on short videos and achieves the highest 60-second VBench Total and four-minute Quality 5. Human evaluation also favors AGF, with the best mean rank across 240 ranking tasks.</p></div></div>
+      <div class="table-scroll" tabindex="0" role="region" aria-label="VBench result table"><table><caption><span class="caption-text">Table 1 · VBench evaluation. <span class="best-key">Best</span> and <span class="second-key">second-best</span> results are highlighted; higher is better.</span></caption><thead><tr><th scope="col" rowspan="2">Method</th><th scope="col">5 seconds</th><th scope="col" colspan="3">60 seconds</th><th scope="col">240 seconds</th></tr><tr><th scope="col">Total ↑</th><th scope="col">Quality ↑</th><th scope="col">Semantic ↑</th><th scope="col">Total ↑</th><th scope="col">Quality 5 ↑</th></tr></thead><tbody>
+        <tr><th scope="row">Self-Forcing</th><td><strong class="score-second" aria-label="82.21, second best">82.21</strong></td><td>82.95</td><td>66.01</td><td>79.56</td><td>82.47</td></tr>
+        <tr><th scope="row">Causal Forcing</th><td><strong class="score-best" aria-label="82.94, best">82.94</strong></td><td><strong class="score-second" aria-label="83.82, second best">83.82</strong></td><td>63.88</td><td>79.83</td><td>81.79</td></tr>
+        <tr><th scope="row">LongLive</th><td>80.34</td><td>82.11</td><td><strong class="score-best" aria-label="70.59, best">70.59</strong></td><td>79.81</td><td>83.62</td></tr>
+        <tr><th scope="row">SGF</th><td>82.08</td><td>83.56</td><td>64.09</td><td>79.67</td><td><strong class="score-second" aria-label="84.07, second best">84.07</strong></td></tr>
+        <tr><th scope="row">OPSD-V</th><td>81.95</td><td>83.16</td><td>67.67</td><td><strong class="score-second" aria-label="80.06, second best">80.06</strong></td><td>82.84</td></tr>
+        <tr class="ours"><th scope="row">AGF (ours)</th><td>82.03</td><td><strong class="score-best" aria-label="84.67, best">84.67</strong></td><td><strong class="score-second" aria-label="68.66, second best">68.66</strong></td><td><strong class="score-best" aria-label="81.47, best">81.47</strong></td><td><strong class="score-best" aria-label="84.82, best">84.82</strong></td></tr>
+      </tbody></table></div>
+      <p class="table-note"><strong>Quality 5</strong> (Q5 in the paper) averages subject consistency, background consistency, motion smoothness, aesthetic quality and imaging quality. It excludes Dynamic Degree and is not the official VBench overall score.</p>
+      <div class="evidence-grid"><figure><h3>Quality across the full rollout</h3><img src="assets/temporal-retention.svg" width="240" height="140" loading="lazy" alt="AGF maintains its initial Quality 5 quality across four minutes; the five baselines decline over time."><figcaption>Quality 5 change relative to the first 20-second segment, over 120 prompts. Shading: pointwise 95% bootstrap confidence intervals. <strong>AGF stays closest to its initial quality throughout the four-minute rollout</strong>, ending at +0.03 percentage points; all five baselines decline by 0.96–2.61 points.</figcaption></figure><figure><h3>Human preference · mean rank</h3><img src="assets/human-ranking.png" width="1100" height="1040" loading="lazy" alt="AGF has the lowest, best mean rank at 2.23, followed by LongLive 2.85, OPSD-V 3.24, SGF 3.32, Self-Forcing 4.43 and Causal Forcing 4.93."><figcaption>Mean rank across 240 ranking tasks over 120 prompts. Lower is better; <strong>AGF receives the best mean rank (2.23)</strong>, followed by LongLive (2.85).</figcaption></figure></div>
+    </section>
+
+
+    <section id="robustness" class="robustness-section" aria-labelledby="robustness-title">
+      <div class="section shell">
+      <div class="section-heading"><h2 id="robustness-title">Robustness to history errors</h2><div class="section-intro">
+        <p>We test whether robustness learned during training transfers to temporary errors at inference. All six methods are evaluated on 120 prompts. Either mild progressive blur or an additive error is applied to newly generated history blocks from 30 to 60 seconds. The intervention then stops, and generation continues to four minutes. The saved video frames themselves are not edited.</p>
+      </div></div>
+      <figure class="paper-figure"><img src="assets/inference-robustness.svg" width="486" height="208.8" loading="lazy" alt="Paper Figure 15: Quality 5 trajectories under temporary blur and additive history errors. All methods lose quality during the intervention; AGF recovers closest to its initial quality."><figcaption><strong>Figure 15 · Generation stability under temporary history perturbations.</strong> Mean local Quality 5 change from each video’s first 20 seconds. Gray shading marks the 30–60-second intervention; colored bands are pointwise 95% bootstrap intervals from 2,000 prompt resamples.</figcaption></figure>
+      <div class="reading after-figure"><p>All methods lose quality during the intervention and recover after it ends, but AGF returns closest to its initial level. Over 90–240 seconds, AGF’s mean Quality 5 change is <strong>−0.17 percentage points after blur</strong> and <strong>−0.13 after additive error</strong>. The corresponding ranges for the five baselines are −2.10 to −1.03 and −2.31 to −1.01 percentage points. These trajectories reflect both natural quality drift and the effects of the temporary intervention.</p></div>
+      </div>
+    </section>
+
+    <section id="citation" class="section shell citation">
+      <div class="citation-heading"><h2>Cite this work</h2><button id="copy-citation" type="button">Copy BibTeX</button></div>
+      <pre><code id="bibtex">@misc{xia2026adversarial,
+  title  = {Adversarial Gradient Forcing for Robust Few-Step
+            Autoregressive Video Generation},
+  author = {Chenxi Xia and Yixuan Xu and Shan Liu and Jiapeng Wang
+            and Maohua Li and Hanlin Tang and Kan Liu and Tao Lan
+            and Weiyi Lu and Xinggao Liu},
+  year   = {2026}
+}</code></pre><p id="citation-status" role="status"></p>
+    </section>
+  </main>
+  <footer class="shell"><div><a class="brand" href="#top">AGF</a><span>Adversarial Gradient Forcing</span></div><a href="#top">Back to top ↑</a></footer>
+
+</body>
+</html>

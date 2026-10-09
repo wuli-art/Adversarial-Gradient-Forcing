@@ -1,0 +1,29 @@
+{
+  "version": 1,
+  "cohorts": {
+    "5s": {
+      "file": "vbench_5s_official_unique_944.txt",
+      "count": 944,
+      "sha256": "d802b4830e9ea85550e5fad2e9f077d74f79fcfad60d0b56b1314a0f5b652dc8",
+      "latent_frames": 21,
+      "pixel_frames": 81,
+      "fps": 16
+    },
+    "60s": {
+      "file": "vbench_60s_official_stratified_240.txt",
+      "count": 240,
+      "sha256": "235b084017a30ace03c8d5ff7e1ac19e34a07ef418a0d26b811cfd99e3c3a64c",
+      "latent_frames": 240,
+      "pixel_frames": 957,
+      "fps": 16
+    },
+    "240s": {
+      "file": "mgvb_extended_240s_diverse_120.txt",
+      "count": 120,
+      "sha256": "35eb6a1ca9a621c8e931e4229e17f7f73c6ec6c8995fad10c67f0981617cbb61",
+      "latent_frames": 960,
+      "pixel_frames": 3837,
+      "fps": 16
+    }
+  }
+}

@@ -1,0 +1,6 @@
+recursive-include tests *.py
+recursive-include scripts *.sh
+
+recursive-include docs *.md
+recursive-include prompts *.md *.txt *.json
+recursive-include evaluation *.txt

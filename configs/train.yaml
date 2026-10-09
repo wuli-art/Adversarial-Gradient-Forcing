@@ -1,0 +1,107 @@
+generator_ckpt: checkpoints/ode_init.pt
+generator_ckpt_key: generator
+generator_fsdp_wrap_strategy: size
+real_score_fsdp_wrap_strategy: size
+fake_score_fsdp_wrap_strategy: size
+text_encoder_fsdp_wrap_strategy: size
+real_name: Wan2.1-T2V-14B
+fake_name: Wan2.1-T2V-1.3B
+denoising_step_list:
+- 1000
+- 750
+- 500
+- 250
+warp_denoising_step: true
+same_step_across_blocks: true
+num_train_timestep: 1000
+timestep_shift: 5.0
+guidance_scale: 3.0
+denoising_loss_type: flow
+ts_schedule: false
+mixed_precision: true
+gradient_checkpointing: true
+sharding_strategy: hybrid_full
+seed: 20260731
+lr: 2.0e-06
+lr_critic: 4.0e-07
+beta1: 0.0
+beta2: 0.999
+beta1_critic: 0.0
+beta2_critic: 0.999
+weight_decay: 0.01
+max_grad_norm_generator: 10.0
+max_grad_norm_critic: 10.0
+data_path: prompts/vidprom_filtered_extended.txt
+batch_size: 1
+total_batch_size: 64
+image_or_video_shape:
+- 1
+- 21
+- 16
+- 60
+- 104
+num_training_frames: 21
+num_frame_per_block: 3
+context_noise: 0
+load_raw_video: false
+dataloader_num_workers: 8
+distribution_loss: adversarial_history_dmd
+trainer: score_distillation
+grad_mode: adversarial_self_gradient_forcing
+per_rank_exit_step: true
+self_gradient_forcing_match_context: false
+self_gradient_forcing_cache_mode: exit
+attack_chunk_choices:
+- 1
+- 2
+- 3
+attack_future_only: true
+attack_temporal_shared: true
+attack_steps: 1
+attack_random_start: false
+attack_epsilon_rms: 0.05
+clean_loss_weight: 0.5
+adv_loss_weight: 0.5
+fake_replay_enabled: true
+fake_replay_batches: 8
+fake_replay_clean_ratio: 0.5
+fake_replay_adv_ratio: 0.5
+fake_replay_device: cpu
+fake_replay_dtype: bf16
+dfake_gen_update_ratio: 5
+ema_weight: 0.99
+ema_start_step: 200
+ema_rank0_only: false
+empty_cache_interval: 0
+gc_interval: 0
+infra_log_timing: true
+max_steps: 400
+log_iters: 200
+checkpoint_steps: [200, 400]
+save_training_state_steps: [200, 400]
+negative_prompt: 色调艳丽，过曝，静态，细节模糊不清，字幕，风格，作品，画作，画面，静止，整体发灰，最差质量，低质量，JPEG压缩残留，丑陋的，残缺的，多余的手指，画得不好的手部，画得不好的脸部，畸形的，毁容的，形态畸形的肢体，手指融合，静止不动的画面，杂乱的背景，三条腿，背景人很多，倒着走
+wandb_entity: null
+wandb_project: adversarial-gradient-forcing
+model_kwargs:
+  model_name: Wan2.1-T2V-1.3B
+  timestep_shift: 5.0
+independent_first_frame: false
+i2v: false
+causal: true
+last_step_only: false
+resume_checkpoint: null
+resume_step: null
+resume_reset_optimizers: false
+resume_reset_replay: false
+resume_dataloader_batches: null
+initialize_ema_from_generator_ckpt: false
+text_encoder_cpu_offload: false
+
+# First-step prediction consistency during iterations 1–200.
+regularization_enabled: true
+regularization_end_step: 200
+regularization_ramp_start: 20
+regularization_ramp_end: 80
+regularization_target_ratio: 0.05
+regularization_gradient_eps: 1.0e-12
+regularization_max_scale: 1000.0
