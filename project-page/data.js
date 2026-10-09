@@ -1,7 +1,7 @@
 "use strict";
 
-// Official destinations are filled in at release.
-window.AGF_LINKS = { arxiv: "", huggingface: "", code: "https://github.com/wuli-art/Adversarial-Gradient-Forcing", project: "" };
+// Paper and model links are added when those releases are available.
+window.AGF_LINKS = { arxiv: "", huggingface: "", code: "https://github.com/wuli-art/Adversarial-Gradient-Forcing", project: "https://wuli-art.github.io/Adversarial-Gradient-Forcing/" };
 
 window.AGF_CASES = [
   {
