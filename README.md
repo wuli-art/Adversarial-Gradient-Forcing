@@ -12,9 +12,8 @@
 </div>
 
 <p><b>TL;DR</b> — AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <b>adversarial history perturbations</b>. Trained on only <b>five-second rollouts</b>, AGF sustains high-quality video generation for <b>four minutes</b>.</p>
-<a href="project-page/assets/yawning-child-comparison.png"><img src="project-page/assets/yawning-child-comparison.png" alt="Six methods on the yawning-child prompt, with a time arrow from 0s to 240s. AGF is the top row."></a>
-<p><a href="project-page/assets/yawning-child-comparison.png">View full-resolution comparison</a> &nbsp; · &nbsp; <a href="project-page/assets/videos/049/agf.mp4">Watch the full four-minute AGF generation</a></p>
-<p><sub>* SGF: reproduced from the same ODE initialization as AGF. † OPSD-V: official checkpoint post-trained from Self-Forcing.</sub></p>
+<p align="center"><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html"><img src="project-page/assets/showcase/agf-scenes.gif" width="960" alt="Five AGF generations in their fourth minute: coffee-cup pirate ships, a neon city robot, flowers, felt creatures and a chef."></a></p>
+<p align="center"><b>From the fourth minute.</b> Selected AGF generations at original speed.<br><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html#gallery">Watch the full videos and comparisons ↗</a></p>
 
 ## Method
 

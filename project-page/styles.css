@@ -58,12 +58,12 @@ sup { font-size: .68em; line-height: 0; margin-left: 2px; }
 .nav > div a { color: #46526a; text-decoration: none; font-size: 16px; font-weight: 560; line-height: 1.5; padding-block: 10px 8px; border-bottom: 2px solid transparent; transition: color .15s, border-color .15s; }
 .nav > div a:hover, .nav > div a:focus-visible { color: var(--accent); border-bottom-color: var(--accent); }
 
-.hero { padding-block: 40px 64px; text-align: center; }
+.hero { padding-block: 28px 48px; text-align: center; }
 .hero-title { max-width: 1100px; margin-inline: auto; }
 h1 { margin: 0 0 12px; }
 h1 span { color: var(--accent); }
 .paper-subtitle { font-size: 22px; line-height: 1.45; font-weight: 430; letter-spacing: -.025em; color: var(--body); margin-bottom: 26px; }
-.institutions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 25px; margin-bottom: 28px; }
+.institutions { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 25px; margin-bottom: 22px; }
 .institutions img { height: 34px; width: auto; }
 .institutions .seal { height: 41px; }
 .institutions .wuli { height: 33px; }
@@ -89,18 +89,16 @@ h1 span { color: var(--accent); }
 .tldr p { text-wrap: balance; margin: 0; color: var(--body); font-size: 18px; line-height: 1.85; letter-spacing: -.012em; }
 .tldr strong { color: #314d7d; font-weight: 620; }
 .keep-phrase { white-space: nowrap; }
-.teaser { padding: 0; text-align: left; }
-.figure-heading { display: flex; justify-content: space-between; gap: 25px; align-items: baseline; padding: 0 6px 15px; }
-.figure-heading > span { font-size: 14px; color: #48566c; font-weight: 550; }
-.figure-heading > a { font-size: 14px; text-decoration: none; }
-.teaser > a { display: block; cursor: zoom-in; }
-.teaser img { width: 100%; height: auto; }
-.teaser figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 30px; margin: 20px 6px 0; font-size: 15px; color: var(--body); line-height: 1.8; }
-.teaser figcaption p { margin: 0; max-width: 870px; }
-.teaser figcaption strong { color: var(--ink); }
-.teaser figcaption a { white-space: nowrap; font-weight: 550; font-size: 14px; }
-.checkpoint-note { max-width: 1100px; margin: 16px auto 0; color: var(--muted); font-size: 14px; line-height: 1.8; }
-.checkpoint-note strong { color: var(--body); font-weight: 600; }
+.showcase { margin: 28px auto 0; text-align: left; }
+.showcase-media { position: relative; }
+.showcase video { width: 100%; height: auto; aspect-ratio: 1260 / 610; background: #fff; border-radius: 5px; }
+#showcase-toggle { position: absolute; bottom: 14px; right: 14px; min-width: 72px; padding: 5px 13px; border: 1px solid #ffffff80; border-radius: 30px; background: #17202ad9; color: #fff; font-size: 14px; font-weight: 550; }
+#showcase-toggle:hover { background: #17202a; }
+.showcase figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 14px; font-size: 14px; line-height: 1.7; color: var(--muted); }
+.showcase figcaption p { margin: 0; }
+.showcase figcaption strong { color: var(--ink); font-weight: 600; }
+.showcase figcaption a { white-space: nowrap; text-decoration: none; color: var(--accent); font-weight: 550; }
+.hero .tldr { margin-bottom: 0; }
 
 .gallery-section { border-top: 1px solid var(--line); }
 .gallery-section .section { padding-block: 62px; }
@@ -233,8 +231,8 @@ footer > a { color: var(--muted); text-decoration: none; }
   .tldr p { font-size: 17px; }
   .authors span { margin-inline: 5px; }
   .institutions { gap: 22px; }
-  .teaser figcaption { display: block; }
-  .teaser figcaption a { display: inline-block; margin-top: 8px; }
+  .showcase figcaption { display: block; }
+  .showcase figcaption a { display: inline-block; margin-top: 6px; }
   .section { padding-block: 60px; }
   h2 { font-size: 35px; }
   .section-heading { display: block; margin-bottom: 30px; }
@@ -283,10 +281,9 @@ footer > a { color: var(--muted); text-decoration: none; }
   .tldr { margin-block: 27px; }
   .tldr p { font-size: 16px; line-height: 1.8; }
   .tldr-label { font-size: 11px; margin-bottom: 9px; }
-  .figure-heading { gap: 12px; padding: 0 0 11px; }
-  .figure-heading > span, .figure-heading > a { font-size: 12px; }
-  .teaser figcaption { margin: 12px 0 0; font-size: 13px; }
-  .checkpoint-note { font-size: 12px; }
+  .showcase { margin-top: 24px; }
+  .showcase figcaption { margin-top: 12px; font-size: 13px; }
+  #showcase-toggle { bottom: 8px; right: 8px; min-width: 58px; font-size: 12px; padding: 3px 10px; }
   .gallery-section .section { padding-block: 42px; }
   .gallery-heading h2 { font-size: 35px; }
   .gallery-settings { gap: 18px; padding-block: 13px; }

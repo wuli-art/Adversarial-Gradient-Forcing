@@ -8,9 +8,9 @@
   <title>AGF · Adversarial Gradient Forcing</title>
   <link rel="preload" href="assets/fonts/inter-variable.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/newsreader-500.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=5ec20c62">
+  <link rel="stylesheet" href="styles.css?v=4c9f2d98">
   <script src="data.js?v=86372f14" defer></script>
-  <script src="site.js?v=8de3a965" defer></script>
+  <script src="site.js?v=2f5a8237" defer></script>
 </head>
 <body>
   <a class="skip" href="#gallery">Skip to videos</a>
@@ -43,15 +43,15 @@
         <a data-resource="huggingface" href="https://huggingface.co/Wuli-art/Adversarial-Gradient-Forcing"><span class="resource-icon" aria-hidden="true">🤗</span> Hugging Face</a>
         <a data-resource="code" href="https://github.com/wuli-art/Adversarial-Gradient-Forcing"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg> Code</a>
       </div>
-      <div class="tldr"><span class="tldr-label">TL;DR</span><p>AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <strong>adversarial history perturbations</strong>. Trained on only <strong class="keep-phrase">five-second rollouts</strong>, AGF sustains high-quality video generation for <strong>four minutes</strong>.</p></div>
-      <figure class="teaser">
-        <div class="figure-heading"><span>Four-minute generation</span><a href="assets/yawning-child-comparison.png?v=e60e743e" target="_blank">View full resolution <span aria-hidden="true">↗</span></a></div>
-        <a href="assets/yawning-child-comparison.png?v=e60e743e" target="_blank" aria-label="Open the full-resolution yawning-child comparison">
-          <img src="assets/yawning-child-comparison.webp?v=7c7d4487" width="2544" height="1456" alt="Six methods generate a yawning child over four minutes. A left-to-right timeline marks 0s, 48s, 96s, 144s, 192s and 240s. AGF is the top row.">
-        </a>
-        <figcaption><p>Four-minute continuations of the same prompt. <strong>AGF preserves the child’s appearance and the surrounding scene</strong> throughout generation.</p><a href="#gallery">Explore the videos <span aria-hidden="true">↗</span></a></figcaption>
+      <figure class="showcase" aria-label="Selected AGF generations">
+        <div class="showcase-media">
+          <video id="showcase-video" muted loop playsinline preload="none" width="1260" height="610" poster="assets/showcase/agf-scenes.jpg" data-src="assets/showcase/agf-scenes.mp4" aria-label="AGF video montage: pirate ships in a coffee cup, a neon city robot, flowers, felt creatures and a chef."></video>
+          <button id="showcase-toggle" type="button" aria-label="Play showcase">Play</button>
+        </div>
+        <figcaption><p><strong>From the fourth minute.</strong> Five AGF generations, playing at original speed.</p><a href="#gallery">Watch full videos <span aria-hidden="true">↗</span></a></figcaption>
+        <noscript><p><a href="assets/showcase/agf-scenes.mp4">Play the video showcase</a></p></noscript>
       </figure>
-      <p class="checkpoint-note"><strong>* SGF:</strong> reproduced from the same ODE initialization as AGF, using its official training settings. <strong>† OPSD-V:</strong> the official checkpoint post-trained from Self-Forcing.</p>
+      <div class="tldr"><span class="tldr-label">TL;DR</span><p>AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <strong>adversarial history perturbations</strong>. Trained on only <strong class="keep-phrase">five-second rollouts</strong>, AGF sustains high-quality video generation for <strong>four minutes</strong>.</p></div>
       </div>
     </section>
 
@@ -85,8 +85,8 @@
     </section>
 
     <section id="motivation" class="section shell ruled" aria-labelledby="motivation-title">
-      <div class="section-heading"><h2 id="motivation-title">The local history robustness gap</h2><div class="section-intro">
-        <p>Every generated block becomes context for the next one. Training on self-generated rollouts narrows the mismatch between training and inference, but it does not necessarily teach a model to recover after its history has become imperfect. Small deviations can still be amplified through later predictions: this is the <strong>local history robustness gap</strong>.</p>
+      <div class="section-heading"><h2 id="motivation-title">Motivation</h2><div class="section-intro">
+        <p>Every generated block becomes context for the next one. Yet existing models remain highly sensitive to errors in their generated history, allowing small deviations to be amplified through subsequent generations. We refer to this sensitivity as the <strong>local history robustness gap</strong>.</p>
         <p>The controlled example below keeps the model and future sampling randomness fixed. A one-time perturbation to one history block causes artifacts to emerge earlier and grow more severe. AGF targets this sensitivity directly by training on histories selected for their effect on future generation.</p>
       </div></div>
       <figure class="paper-figure"><img src="assets/history-gap.png" width="1800" height="688" loading="lazy" alt="A controlled comparison of Self-Forcing with an unperturbed history and with a single history perturbation."><figcaption><strong>A single history perturbation can alter the entire continuation.</strong> The lower rollout differs only by the intervention to its generated history.</figcaption></figure>

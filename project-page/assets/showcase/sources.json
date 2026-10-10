@@ -1,0 +1,73 @@
+{
+  "method": "AGF",
+  "duration_seconds": 12,
+  "playback_rate": 1,
+  "layout": "Two large scenes above three smaller scenes; white gutters; original aspect ratios retained.",
+  "clips": [
+    {
+      "case": "012",
+      "source": "../videos/012/agf.mp4",
+      "start_seconds": 188,
+      "end_seconds": 200,
+      "rectangle": [
+        0,
+        0,
+        624,
+        360
+      ]
+    },
+    {
+      "case": "032",
+      "source": "../videos/032/agf.mp4",
+      "start_seconds": 188,
+      "end_seconds": 200,
+      "rectangle": [
+        636,
+        0,
+        624,
+        360
+      ]
+    },
+    {
+      "case": "027",
+      "source": "../videos/027/agf.mp4",
+      "start_seconds": 188,
+      "end_seconds": 200,
+      "rectangle": [
+        0,
+        372,
+        412,
+        238
+      ]
+    },
+    {
+      "case": "035",
+      "source": "../videos/035/agf.mp4",
+      "start_seconds": 188,
+      "end_seconds": 200,
+      "rectangle": [
+        424,
+        372,
+        412,
+        238
+      ]
+    },
+    {
+      "case": "087",
+      "source": "../videos/087/agf.mp4",
+      "start_seconds": 188,
+      "end_seconds": 200,
+      "rectangle": [
+        848,
+        372,
+        412,
+        238
+      ]
+    }
+  ],
+  "readme_preview": {
+    "duration_seconds": 6,
+    "fps": 8,
+    "width": 800
+  }
+}

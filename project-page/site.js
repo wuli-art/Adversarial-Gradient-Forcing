@@ -23,6 +23,43 @@ for (const link of document.querySelectorAll("[data-resource]")) {
   if (href) { link.href = href; link.removeAttribute("aria-disabled"); }
 }
 
+// One short encoded montage keeps the opening independent of the full-video gallery.
+const showcase = byId("showcase-video");
+const showcaseToggle = byId("showcase-toggle");
+let showcaseVisible = false;
+let showcasePausedByUser = reducedMotion;
+function playShowcase() {
+  if (!showcase.getAttribute("src")) showcase.src = showcase.dataset.src;
+  showcase.play().catch(() => {
+    showcaseToggle.textContent = "Play";
+    showcaseToggle.setAttribute("aria-label", "Play showcase");
+  });
+}
+function updateShowcase() {
+  if (showcaseVisible && !document.hidden && !showcasePausedByUser) playShowcase();
+  else showcase.pause();
+}
+showcaseToggle.addEventListener("click", () => {
+  showcasePausedByUser = !showcase.paused;
+  if (showcasePausedByUser) showcase.pause();
+  else playShowcase();
+});
+for (const event of ["play", "pause", "error"]) {
+  showcase.addEventListener(event, () => {
+    const playing = !showcase.paused && !showcase.error;
+    showcaseToggle.textContent = playing ? "Pause" : "Play";
+    showcaseToggle.setAttribute("aria-label", playing ? "Pause showcase" : "Play showcase");
+  });
+}
+if ("IntersectionObserver" in window) {
+  const showcaseObserver = new IntersectionObserver(([entry]) => {
+    showcaseVisible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
+    updateShowcase();
+  }, { threshold: [0, 0.15] });
+  showcaseObserver.observe(showcase);
+}
+document.addEventListener("visibilitychange", updateShowcase);
+
 function element(tag, className, text) {
   const node = document.createElement(tag);
   if (className) node.className = className;
