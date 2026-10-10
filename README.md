@@ -5,7 +5,7 @@
 <p>¹ Zhejiang University &nbsp; ² Alibaba Group &nbsp; ³ Nanjing University</p>
 <p>
   <a><img src="project-page/assets/readme/arxiv.png" alt="arXiv" height="42"></a>
-  <a><img src="project-page/assets/readme/huggingface.png" alt="Hugging Face" height="42"></a>
+  <a href="https://huggingface.co/Wuli-art/Adversarial-Gradient-Forcing"><img src="project-page/assets/readme/huggingface.png" alt="Hugging Face" height="42"></a>
   <a href="https://github.com/wuli-art/Adversarial-Gradient-Forcing"><img src="project-page/assets/readme/code.png" alt="Code" height="42"></a>
   <a href="https://wuli-art.github.io/Adversarial-Gradient-Forcing/"><img src="project-page/assets/readme/project.png" alt="Project Page" height="42"></a>
 </p>
