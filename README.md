@@ -12,7 +12,7 @@
 </div>
 
 <p><b>TL;DR</b> — AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <b>adversarial history perturbations</b>. Trained on only <b>five-second rollouts</b>, AGF sustains high-quality video generation for <b>four minutes</b>.</p>
-<p align="center"><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html"><img src="project-page/assets/showcase/agf-scenes.gif" width="960" alt="AGF video mosaic: coffee-cup pirate ships, a neon city robot, dancing felt creatures, a chef, a watercolor dance and a yawning child."></a></p>
+<p align="center"><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html"><img src="project-page/assets/showcase/agf-scenes.gif" width="960" alt="AGF video mosaic: coffee-cup pirate ships, a neon city robot, dancing felt creatures, a creature by candlelight, a watercolor dance and a yawning child."></a></p>
 <p align="center"><b>Generated with AGF.</b> Selected video excerpts at original speed.<br><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html#gallery">Watch the full videos and comparisons ↗</a></p>
 
 ## Method
