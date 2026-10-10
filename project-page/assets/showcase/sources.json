@@ -1,67 +1,143 @@
 {
   "method": "AGF",
-  "duration_seconds": 12,
+  "duration_seconds": 8,
   "playback_rate": 1,
-  "layout": "Two large scenes above three smaller scenes; white gutters; original aspect ratios retained.",
+  "canvas": [
+    1440,
+    680
+  ],
+  "layout": "Asymmetric mosaic with a wide coffee-cup scene, a tall robot, close-up portrait and differently sized animation and cooking scenes. White 12-pixel gutters.",
   "clips": [
     {
       "case": "012",
       "source": "../videos/012/agf.mp4",
-      "start_seconds": 188,
-      "end_seconds": 200,
-      "rectangle": [
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "source_dimensions": [
+        624,
+        360
+      ],
+      "source_crop_xywh": [
         0,
         0,
         624,
         360
+      ],
+      "rectangle": [
+        0,
+        0,
+        600,
+        346
+      ]
+    },
+    {
+      "case": "118",
+      "source": "../videos/118/agf.mp4",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "source_dimensions": [
+        624,
+        360
+      ],
+      "source_crop_xywh": [
+        114,
+        0,
+        396,
+        360
+      ],
+      "rectangle": [
+        0,
+        358,
+        354,
+        322
+      ]
+    },
+    {
+      "case": "049",
+      "source": "../videos/049/agf.mp4",
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "source_dimensions": [
+        624,
+        360
+      ],
+      "source_crop_xywh": [
+        176,
+        0,
+        262,
+        360
+      ],
+      "rectangle": [
+        366,
+        358,
+        234,
+        322
       ]
     },
     {
       "case": "032",
       "source": "../videos/032/agf.mp4",
-      "start_seconds": 188,
-      "end_seconds": 200,
-      "rectangle": [
-        636,
-        0,
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "source_dimensions": [
         624,
         360
-      ]
-    },
-    {
-      "case": "027",
-      "source": "../videos/027/agf.mp4",
-      "start_seconds": 188,
-      "end_seconds": 200,
-      "rectangle": [
+      ],
+      "source_crop_xywh": [
+        226,
         0,
-        372,
-        412,
-        238
+        174,
+        360
+      ],
+      "rectangle": [
+        612,
+        0,
+        330,
+        680
       ]
     },
     {
       "case": "035",
       "source": "../videos/035/agf.mp4",
       "start_seconds": 188,
-      "end_seconds": 200,
+      "end_seconds": 196,
+      "source_dimensions": [
+        624,
+        360
+      ],
+      "source_crop_xywh": [
+        0,
+        2,
+        624,
+        356
+      ],
       "rectangle": [
-        424,
-        372,
-        412,
-        238
+        954,
+        0,
+        486,
+        278
       ]
     },
     {
       "case": "087",
       "source": "../videos/087/agf.mp4",
-      "start_seconds": 188,
-      "end_seconds": 200,
+      "start_seconds": 0,
+      "end_seconds": 8,
+      "source_dimensions": [
+        624,
+        360
+      ],
+      "source_crop_xywh": [
+        78,
+        0,
+        448,
+        360
+      ],
       "rectangle": [
-        848,
-        372,
-        412,
-        238
+        954,
+        290,
+        486,
+        390
       ]
     }
   ],

@@ -91,7 +91,7 @@ h1 span { color: var(--accent); }
 .keep-phrase { white-space: nowrap; }
 .showcase { margin: 28px auto 0; text-align: left; }
 .showcase-media { position: relative; }
-.showcase video { width: 100%; height: auto; aspect-ratio: 1260 / 610; background: #fff; border-radius: 5px; }
+.showcase video { width: 100%; height: auto; aspect-ratio: 1440 / 680; background: #fff; border-radius: 5px; }
 #showcase-toggle { position: absolute; bottom: 14px; right: 14px; min-width: 72px; padding: 5px 13px; border: 1px solid #ffffff80; border-radius: 30px; background: #17202ad9; color: #fff; font-size: 14px; font-weight: 550; }
 #showcase-toggle:hover { background: #17202a; }
 .showcase figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; margin-top: 14px; font-size: 14px; line-height: 1.7; color: var(--muted); }
