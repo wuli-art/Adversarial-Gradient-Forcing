@@ -390,3 +390,29 @@ footer > a { color: var(--muted); text-decoration: none; }
   .citation { padding-block: 54px 44px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+/* The narrated overview uses its native 16:9 composition. */
+.overview { max-width: 1056px; margin: 28px auto 0; text-align: left; }
+.overview-media { position: relative; overflow: hidden; border: 1px solid #e5e7ee; border-radius: 12px; background: #faf9f6; box-shadow: 0 8px 32px -20px #28344e38; }
+.overview video { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: contain; }
+#overview-start { position: absolute; bottom: 4.4%; left: 50%; transform: translateX(-50%); display: inline-flex; align-items: center; gap: 10px; padding: 11px 18px; border: 1px solid #d7dfea; border-radius: 999px; background: #fff; color: #344f9c; box-shadow: 0 3px 12px #24365012; font: 600 15px/1.2 Inter, sans-serif; white-space: nowrap; cursor: pointer; }
+#overview-start[hidden] { display: none; }
+#overview-start:hover { background: #eef2ff; border-color: #b3c1e1; }
+#overview-start:focus-visible { outline: 3px solid #4164d5; outline-offset: 3px; }
+#overview-start svg { width: 18px; height: 18px; fill: currentColor; }
+.overview-duration { padding-left: 10px; border-left: 1px solid #d7dfea; font-size: 13px; font-weight: 500; color: #667085; }
+.overview figcaption { display: flex; justify-content: space-between; align-items: baseline; gap: 20px; margin-top: 14px; color: #677181; font-size: 14px; line-height: 1.7; }
+.overview figcaption p { margin: 0; }
+.overview figcaption strong { color: #354054; font-weight: 600; }
+.overview figcaption a { flex-shrink: 0; color: #3f5dab; font-weight: 600; text-decoration: none; }
+.overview figcaption a:hover { text-decoration: underline; }
+.overview-status { font-size: 14px; color: #813523; }
+@media (max-width: 700px) {
+  .overview { margin-top: 24px; }
+  .overview-media { border-radius: 8px; }
+  .overview figcaption { display: block; font-size: 13px; }
+  .overview figcaption a { display: inline-block; margin-top: 6px; }
+  #overview-start { bottom: 3%; gap: 7px; padding: 8px 12px; font-size: 12px; }
+  #overview-start svg { width: 14px; height: 14px; }
+  .overview-duration { font-size: 11px; padding-left: 7px; }
+}

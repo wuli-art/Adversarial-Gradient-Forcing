@@ -23,42 +23,41 @@ for (const link of document.querySelectorAll("[data-resource]")) {
   if (href) { link.href = href; link.removeAttribute("aria-disabled"); }
 }
 
-// One short encoded montage keeps the opening independent of the full-video gallery.
-const showcase = byId("showcase-video");
-const showcaseToggle = byId("showcase-toggle");
-let showcaseVisible = false;
-let showcasePausedByUser = reducedMotion;
-function playShowcase() {
-  if (!showcase.getAttribute("src")) showcase.src = showcase.dataset.src;
-  showcase.play().catch(() => {
-    showcaseToggle.textContent = "Play";
-    showcaseToggle.setAttribute("aria-label", "Play showcase");
-  });
-}
-function updateShowcase() {
-  if (showcaseVisible && !document.hidden && !showcasePausedByUser) playShowcase();
-  else showcase.pause();
-}
-showcaseToggle.addEventListener("click", () => {
-  showcasePausedByUser = !showcase.paused;
-  if (showcasePausedByUser) showcase.pause();
-  else playShowcase();
+// Narration begins only after a user gesture; one playback context at a time.
+const overview = byId("overview-video");
+const overviewStart = byId("overview-start");
+const overviewStatus = byId("overview-status");
+overview.controls = false;
+overviewStart.hidden = false;
+overviewStart.addEventListener("click", async () => {
+  overviewStatus.hidden = true;
+  overview.controls = true;
+  overviewStart.hidden = true;
+  try {
+    await overview.play();
+  } catch {
+    overviewStatus.hidden = false;
+    overviewStart.hidden = false;
+  }
 });
-for (const event of ["play", "pause", "error"]) {
-  showcase.addEventListener(event, () => {
-    const playing = !showcase.paused && !showcase.error;
-    showcaseToggle.textContent = playing ? "Pause" : "Play";
-    showcaseToggle.setAttribute("aria-label", playing ? "Pause showcase" : "Play showcase");
-  });
-}
+overview.addEventListener("play", () => {
+  activePlayer?.release();
+  activePlayer = null;
+  overviewStart.hidden = true;
+  overviewStatus.hidden = true;
+});
+overview.addEventListener("error", () => {
+  overviewStatus.hidden = false;
+  overviewStart.hidden = false;
+});
 if ("IntersectionObserver" in window) {
-  const showcaseObserver = new IntersectionObserver(([entry]) => {
-    showcaseVisible = entry.isIntersecting && entry.intersectionRatio >= 0.15;
-    updateShowcase();
-  }, { threshold: [0, 0.15] });
-  showcaseObserver.observe(showcase);
+  new IntersectionObserver(([entry]) => {
+    if (!entry.isIntersecting) overview.pause();
+  }).observe(overview);
 }
-document.addEventListener("visibilitychange", updateShowcase);
+document.addEventListener("visibilitychange", () => {
+  if (document.hidden) overview.pause();
+});
 
 function element(tag, className, text) {
   const node = document.createElement(tag);
@@ -68,6 +67,7 @@ function element(tag, className, text) {
 }
 
 function activate(player) {
+  overview.pause();
   if (activePlayer && activePlayer !== player) activePlayer.release();
   activePlayer = player;
 }
@@ -353,7 +353,7 @@ function renderGallery() {
         if (player) player.visibility = entry.intersectionRatio;
       }
       if (activePlayer && activePlayer.visibility === 0) { activePlayer.release(); activePlayer = null; }
-      if (document.hidden || reducedMotion) return;
+      if (document.hidden || reducedMotion || !overview.paused) return;
       const visible = players.filter((p) => p.visibility >= 0.4).sort((a, b) => b.visibility - a.visibility)[0];
       if (visible && visible !== activePlayer && !visible.userPaused) visible.play(null, true);
     }, { threshold: [0, 0.2, 0.4, 0.6, 0.8, 1] });

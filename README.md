@@ -4,7 +4,7 @@
 <p>Chenxi Xia¹˒² · Yixuan Xu² · Shan Liu² · Jiapeng Wang² · Maohua Li²˒³<br>Hanlin Tang² · Kan Liu² · Tao Lan² · Weiyi Lu² · Xinggao Liu¹</p>
 <p>¹ Zhejiang University &nbsp; ² Alibaba Group &nbsp; ³ Nanjing University</p>
 <p>
-  <a><img src="project-page/assets/readme/arxiv.png" alt="arXiv" height="42"></a>
+  <a href="https://arxiv.org/abs/2610.14553"><img src="project-page/assets/readme/arxiv.png" alt="arXiv" height="42"></a>
   <a href="https://huggingface.co/Wuli-art/Adversarial-Gradient-Forcing"><img src="project-page/assets/readme/huggingface.png" alt="Hugging Face" height="42"></a>
   <a href="https://github.com/wuli-art/Adversarial-Gradient-Forcing"><img src="project-page/assets/readme/code.png" alt="Code" height="42"></a>
   <a href="https://wuli-art.github.io/Adversarial-Gradient-Forcing/"><img src="project-page/assets/readme/project.png" alt="Project Page" height="42"></a>
@@ -12,8 +12,8 @@
 </div>
 
 <p><b>TL;DR</b> — AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <b>adversarial history perturbations</b>. Trained on only <b>five-second rollouts</b>, AGF sustains high-quality video generation for <b>four minutes</b>.</p>
-<p align="center"><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html"><img src="project-page/assets/showcase/agf-scenes.gif" width="960" alt="AGF video mosaic: coffee-cup pirate ships, a neon city robot, dancing felt creatures, a creature by candlelight, a watercolor dance and a yawning child."></a></p>
-<p align="center"><b>Generated with AGF.</b> Selected video excerpts at original speed.<br><a href="https://shark-console.oss-cn-shanghai.aliyuncs.com/shuju/project/kv_reasoning/runs/AGF/reports/project-page/20261010-9024de6/index.html#gallery">Watch the full videos and comparisons ↗</a></p>
+<p align="center"><a href="https://wuli-art.github.io/Adversarial-Gradient-Forcing/"><img src="project-page/assets/showcase/agf-scenes.gif" width="960" alt="AGF video mosaic: coffee-cup pirate ships, a neon city robot, dancing felt creatures, a creature by candlelight, a watercolor dance and a yawning child."></a></p>
+<p align="center"><b>Generated with AGF.</b> Selected video excerpts at original speed.<br><a href="https://wuli-art.github.io/Adversarial-Gradient-Forcing/#gallery">Watch the full videos and comparisons ↗</a></p>
 
 ## Method
 
@@ -88,12 +88,15 @@ continue. Use a new run ID for each experiment.
 
 ```bibtex
 @misc{xia2026adversarial,
-  title   = {Adversarial Gradient Forcing for Robust Few-Step
-             Autoregressive Video Generation},
-  author  = {Chenxi Xia and Yixuan Xu and Shan Liu and Jiapeng Wang
-             and Maohua Li and Hanlin Tang and Kan Liu and Tao Lan
-             and Weiyi Lu and Xinggao Liu},
-  year    = {2026}
+  title         = {Adversarial Gradient Forcing for Robust Few-Step Autoregressive Video Generation},
+  author        = {Chenxi Xia and Yixuan Xu and Shan Liu and Jiapeng Wang
+                   and Maohua Li and Hanlin Tang and Kan Liu and Tao Lan
+                   and Weiyi Lu and Xinggao Liu},
+  year          = {2026},
+  eprint        = {2610.14553},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2610.14553}
 }
 ```
 

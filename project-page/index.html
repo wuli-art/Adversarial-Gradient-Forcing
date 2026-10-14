@@ -8,9 +8,9 @@
   <title>AGF · Adversarial Gradient Forcing</title>
   <link rel="preload" href="assets/fonts/inter-variable.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/fonts/newsreader-500.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="styles.css?v=fda96720">
-  <script src="data.js?v=86372f14" defer></script>
-  <script src="site.js?v=2f5a8237" defer></script>
+  <link rel="stylesheet" href="styles.css?v=6959db06">
+  <script src="data.js?v=428b8f01" defer></script>
+  <script src="site.js?v=837351a8" defer></script>
 </head>
 <body>
   <a class="skip" href="#gallery">Skip to videos</a>
@@ -39,17 +39,20 @@
       <p class="affiliations"><span><sup>1</sup> Zhejiang University</span><span><sup>2</sup> Alibaba Group</span><span><sup>3</sup> Nanjing University</span></p>
       <p class="author-notes"><span>♯ Work done during internship at Alibaba</span><span>† Project lead</span><span>§ Corresponding author</span></p></div>
       <div class="resources" aria-label="Research resources">
-        <a data-resource="arxiv" aria-disabled="true"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 12h6M9 16h6"/></svg> arXiv</a>
+        <a data-resource="arxiv" href="https://arxiv.org/abs/2610.14553"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v5h4M9 12h6M9 16h6"/></svg> arXiv</a>
         <a data-resource="huggingface" href="https://huggingface.co/Wuli-art/Adversarial-Gradient-Forcing"><span class="resource-icon" aria-hidden="true">🤗</span> Hugging Face</a>
         <a data-resource="code" href="https://github.com/wuli-art/Adversarial-Gradient-Forcing"><svg class="resource-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m8 6-6 6 6 6m8-12 6 6-6 6M14 3l-4 18"/></svg> Code</a>
       </div>
-      <figure class="showcase" aria-label="Selected AGF generations">
-        <div class="showcase-media">
-          <video id="showcase-video" muted loop playsinline preload="none" width="1440" height="560" poster="assets/showcase/agf-scenes.jpg?v=51ca37ff" data-src="assets/showcase/agf-scenes.mp4?v=e69ff2bb" aria-label="AGF video mosaic: coffee-cup pirate ships, a neon city robot, dancing felt creatures, a creature by candlelight, a watercolor dance and a yawning child."></video>
-          <button id="showcase-toggle" type="button" aria-label="Play showcase">Play</button>
+      <figure id="overview" class="overview" aria-label="AGF method overview">
+        <div class="overview-media">
+          <video id="overview-video" controls playsinline preload="none" width="1920" height="1080" poster="assets/overview/poster-v8-9adc8957.jpg" src="assets/overview/agf-project-overview-v8-48ad8111.mp4" aria-label="AGF method overview with English narration and captions"></video>
+          <button id="overview-start" type="button" style="bottom:16%" hidden aria-label="Play the 3 minute 26 second method overview with sound">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m9 5 11 7-11 7z"/></svg>
+            <span>Watch overview</span><span class="overview-duration">3:26</span>
+          </button>
         </div>
-        <figcaption><p><strong>Generated with AGF.</strong> Selected video excerpts at original speed.</p><a href="#gallery">Watch full videos <span aria-hidden="true">↗</span></a></figcaption>
-        <noscript><p><a href="assets/showcase/agf-scenes.mp4?v=e69ff2bb">Play the video showcase</a></p></noscript>
+        <figcaption><p>Watch the AGF method overview.</p><a href="#gallery">Explore comparisons <span aria-hidden="true">↓</span></a></figcaption>
+        <p id="overview-status" class="overview-status" role="status" hidden>Unable to start playback. <a href="assets/overview/agf-project-overview-v8-48ad8111.mp4">Open the video directly ↗</a></p>
       </figure>
       <div class="tldr"><span class="tldr-label">TL;DR</span><p>AGF mitigates error accumulation in few-step autoregressive video generation by training models to withstand <strong>adversarial history perturbations</strong>. Trained on only <strong class="keep-phrase">five-second rollouts</strong>, AGF sustains high-quality video generation for <strong>four minutes</strong>.</p></div>
       </div>
@@ -72,7 +75,7 @@
         <div id="comparison-grid" class="comparison-grid"></div>
         <div class="gallery-pagination bottom"><a href="#gallery">Back to comparisons ↑</a><nav aria-label="Video gallery pages, bottom"><button id="page-prev" type="button" aria-label="Previous page">←</button><span id="page-number"></span><button id="page-next" type="button" aria-label="Next page">→</button></nav></div>
         <details class="protocol"><summary>About the videos</summary><p>Each video contains the full generation, presented at 624 × 360 and 16 fps. Playback defaults to 1× (original speed); faster rates are available in each case’s controls. Controls apply to one comparison at a time.</p></details>
-        <noscript><p>Enable JavaScript to compare methods. <a href="assets/videos/049/agf.mp4">Watch AGF’s four-minute yawning-child video</a>.</p></noscript>
+        <noscript><p>Enable JavaScript to compare methods. <a href="https://github.com/wuli-art/Adversarial-Gradient-Forcing/releases/download/project-media-v1/case-049-agf.mp4">Watch AGF’s four-minute yawning-child video</a>.</p></noscript>
       </div>
     </section>
 
@@ -134,12 +137,15 @@
     <section id="citation" class="section shell citation">
       <div class="citation-heading"><h2>Cite this work</h2><button id="copy-citation" type="button">Copy BibTeX</button></div>
       <pre><code id="bibtex">@misc{xia2026adversarial,
-  title  = {Adversarial Gradient Forcing for Robust Few-Step
-            Autoregressive Video Generation},
-  author = {Chenxi Xia and Yixuan Xu and Shan Liu and Jiapeng Wang
-            and Maohua Li and Hanlin Tang and Kan Liu and Tao Lan
-            and Weiyi Lu and Xinggao Liu},
-  year   = {2026}
+  title         = {Adversarial Gradient Forcing for Robust Few-Step Autoregressive Video Generation},
+  author        = {Chenxi Xia and Yixuan Xu and Shan Liu and Jiapeng Wang
+                   and Maohua Li and Hanlin Tang and Kan Liu and Tao Lan
+                   and Weiyi Lu and Xinggao Liu},
+  year          = {2026},
+  eprint        = {2610.14553},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2610.14553}
 }</code></pre><p id="citation-status" role="status"></p>
     </section>
   </main>

@@ -1,0 +1,52 @@
+name: Publish project page
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'project-page/**'
+      - '.github/workflows/pages.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.repository == 'wuli-art/Adversarial-Gradient-Forcing' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          # Full comparison videos are served from the project-media-v1 release.
+          sparse-checkout: |
+            /project-page/
+            !/project-page/assets/videos/
+          sparse-checkout-cone-mode: false
+          persist-credentials: false
+      - name: Check publication size
+        shell: bash
+        run: |
+          test -f project-page/index.html
+          test ! -d project-page/assets/videos
+          bytes=$(du -sb project-page | cut -f1)
+          test "$bytes" -lt 1000000000
+          echo "Publishing $bytes bytes"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: project-page
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
