@@ -29,19 +29,18 @@ jobs:
     steps:
       - uses: actions/checkout@v6
         with:
-          # Full comparison videos are served from the project-media-v1 release.
+          # Video media is served from the external media CDN.
           sparse-checkout: |
             /project-page/
-            !/project-page/assets/videos/
           sparse-checkout-cone-mode: false
           persist-credentials: false
       - name: Check publication size
         shell: bash
         run: |
           test -f project-page/index.html
-          test ! -d project-page/assets/videos
+          test -z "$(find project-page -type f -iname '*.mp4' -print -quit)"
           bytes=$(du -sb project-page | cut -f1)
-          test "$bytes" -lt 1000000000
+          test "$bytes" -lt 100000000
           echo "Publishing $bytes bytes"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v4

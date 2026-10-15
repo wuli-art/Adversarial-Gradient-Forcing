@@ -17,7 +17,6 @@ runs/
 data/
 weights/
 videos/
-!project-page/assets/videos/
 
 checkpoints/
 wan_models/
@@ -39,3 +38,6 @@ htmlcov/
 third_party/
 evaluation_models/
 .venv*/
+
+# Published video media is hosted outside the source repository.
+project-page/**/*.mp4
